@@ -1,15 +1,16 @@
 package config
 
 import (
-	"github.com/go-ozzo/ozzo-validation/v4"
-	"github.com/qiangxue/go-env"
-	"github.com/hikvineh/go-rest-game-character/pkg/log"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
+
+	validation "github.com/go-ozzo/ozzo-validation/v4"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
+	"github.com/qiangxue/go-env"
+	"gopkg.in/yaml.v2"
 )
 
 const (
-	defaultServerPort         = 8080
+	defaultServerPort         = 8000
 	defaultJWTExpirationHours = 72
 )
 
