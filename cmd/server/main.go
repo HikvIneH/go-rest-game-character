@@ -5,22 +5,25 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
-	"github.com/go-ozzo/ozzo-dbx"
-	"github.com/go-ozzo/ozzo-routing/v2"
-	"github.com/go-ozzo/ozzo-routing/v2/content"
-	"github.com/go-ozzo/ozzo-routing/v2/cors"
-	_ "github.com/lib/pq"
-	"github.com/qiangxue/go-rest-api/internal/album"
-	"github.com/qiangxue/go-rest-api/internal/auth"
-	"github.com/qiangxue/go-rest-api/internal/config"
-	"github.com/qiangxue/go-rest-api/internal/errors"
-	"github.com/qiangxue/go-rest-api/internal/healthcheck"
-	"github.com/qiangxue/go-rest-api/pkg/accesslog"
-	"github.com/qiangxue/go-rest-api/pkg/dbcontext"
-	"github.com/qiangxue/go-rest-api/pkg/log"
 	"net/http"
 	"os"
 	"time"
+
+	dbx "github.com/go-ozzo/ozzo-dbx"
+	routing "github.com/go-ozzo/ozzo-routing/v2"
+	"github.com/go-ozzo/ozzo-routing/v2/content"
+	"github.com/go-ozzo/ozzo-routing/v2/cors"
+	"github.com/hikvineh/go-rest-game-character/internal/album"
+	"github.com/hikvineh/go-rest-game-character/internal/character"
+	_ "github.com/lib/pq"
+
+	"github.com/hikvineh/go-rest-game-character/internal/auth"
+	"github.com/hikvineh/go-rest-game-character/internal/config"
+	"github.com/hikvineh/go-rest-game-character/internal/errors"
+	"github.com/hikvineh/go-rest-game-character/internal/healthcheck"
+	"github.com/hikvineh/go-rest-game-character/pkg/accesslog"
+	"github.com/hikvineh/go-rest-game-character/pkg/dbcontext"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 )
 
 // Version indicates the current version of the application.
@@ -88,7 +91,12 @@ func buildHandler(logger log.Logger, db *dbcontext.DB, cfg *config.Config) http.
 	authHandler := auth.Handler(cfg.JWTSigningKey)
 
 	album.RegisterHandlers(rg.Group(""),
-		album.NewService(album.NewRepository(db, logger), logger),
+		album.NewAlbumService(album.NewRepository(db, logger), logger),
+		authHandler, logger,
+	)
+
+	character.RegisterHandlers(rg.Group(""),
+		character.NewCharacterService(character.NewRepository(db, logger), logger),
 		authHandler, logger,
 	)
 

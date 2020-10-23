@@ -1,4 +1,4 @@
-module github.com/qiangxue/go-rest-api
+module github.com/hikvineh/go-rest-game-character
 
 go 1.13
 

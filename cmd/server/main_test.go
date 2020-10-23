@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"

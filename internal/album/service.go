@@ -3,8 +3,8 @@ package album
 import (
 	"context"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
-	"github.com/qiangxue/go-rest-api/internal/entity"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/internal/entity"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 	"time"
 )
 
@@ -52,8 +52,8 @@ type service struct {
 	logger log.Logger
 }
 
-// NewService creates a new album service.
-func NewService(repo Repository, logger log.Logger) Service {
+// NewAlbumService creates a new album service.
+func NewAlbumService(repo Repository, logger log.Logger) Service {
 	return service{repo, logger}
 }
 

@@ -1,10 +1,10 @@
 package album
 
 import (
-	"github.com/qiangxue/go-rest-api/internal/auth"
-	"github.com/qiangxue/go-rest-api/internal/entity"
-	"github.com/qiangxue/go-rest-api/internal/test"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/internal/auth"
+	"github.com/hikvineh/go-rest-game-character/internal/entity"
+	"github.com/hikvineh/go-rest-game-character/internal/test"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 	"net/http"
 	"testing"
 	"time"
@@ -16,7 +16,7 @@ func TestAPI(t *testing.T) {
 	repo := &mockRepository{items: []entity.Album{
 		{"123", "album123", time.Now(), time.Now()},
 	}}
-	RegisterHandlers(router.Group(""), NewService(repo, logger), auth.MockAuthHandler, logger)
+	RegisterHandlers(router.Group(""), NewAlbumService(repo, logger), auth.MockAuthHandler, logger)
 	header := auth.MockAuthHeader()
 
 	tests := []test.APITestCase{

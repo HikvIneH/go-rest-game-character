@@ -3,9 +3,9 @@ package album
 import (
 	"context"
 	"database/sql"
-	"github.com/qiangxue/go-rest-api/internal/entity"
-	"github.com/qiangxue/go-rest-api/internal/test"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/internal/entity"
+	"github.com/hikvineh/go-rest-game-character/internal/test"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"

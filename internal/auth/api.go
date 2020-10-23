@@ -2,8 +2,8 @@ package auth
 
 import (
 	routing "github.com/go-ozzo/ozzo-routing/v2"
-	"github.com/qiangxue/go-rest-api/internal/errors"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/internal/errors"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 )
 
 // RegisterHandlers registers handlers for different HTTP requests.

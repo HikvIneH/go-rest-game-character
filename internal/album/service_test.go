@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"github.com/qiangxue/go-rest-api/internal/entity"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/internal/entity"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -50,7 +50,7 @@ func TestUpdateAlbumRequest_Validate(t *testing.T) {
 
 func Test_service_CRUD(t *testing.T) {
 	logger, _ := log.NewForTest()
-	s := NewService(&mockRepository{}, logger)
+	s := NewAlbumService(&mockRepository{}, logger)
 
 	ctx := context.Background()
 

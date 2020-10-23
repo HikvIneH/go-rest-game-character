@@ -3,9 +3,9 @@ package auth
 import (
 	"context"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/qiangxue/go-rest-api/internal/entity"
-	"github.com/qiangxue/go-rest-api/internal/errors"
-	"github.com/qiangxue/go-rest-api/pkg/log"
+	"github.com/hikvineh/go-rest-game-character/internal/entity"
+	"github.com/hikvineh/go-rest-game-character/internal/errors"
+	"github.com/hikvineh/go-rest-game-character/pkg/log"
 	"time"
 )
 
