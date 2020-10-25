@@ -13,7 +13,6 @@ import (
 	routing "github.com/go-ozzo/ozzo-routing/v2"
 	"github.com/go-ozzo/ozzo-routing/v2/content"
 	"github.com/go-ozzo/ozzo-routing/v2/cors"
-	"github.com/hikvineh/go-rest-game-character/internal/album"
 	"github.com/hikvineh/go-rest-game-character/internal/character"
 	_ "github.com/lib/pq"
 
@@ -90,13 +89,8 @@ func buildHandler(logger log.Logger, db *dbcontext.DB, cfg *config.Config) http.
 
 	authHandler := auth.Handler(cfg.JWTSigningKey)
 
-	album.RegisterHandlers(rg.Group(""),
-		album.NewAlbumService(album.NewRepository(db, logger), logger),
-		authHandler, logger,
-	)
-
 	character.RegisterHandlers(rg.Group(""),
-		character.NewCharacterService(character.NewRepository(db, logger), logger),
+		character.NewService(character.NewRepository(db, logger), logger),
 		authHandler, logger,
 	)
 

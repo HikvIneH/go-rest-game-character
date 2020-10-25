@@ -2,10 +2,11 @@ package character
 
 import (
 	"context"
+	"time"
+
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 	"github.com/hikvineh/go-rest-game-character/internal/entity"
 	"github.com/hikvineh/go-rest-game-character/pkg/log"
-	"time"
 )
 
 // Service encapsulates usecase logic for albums.
@@ -23,9 +24,18 @@ type Character struct {
 	entity.Character
 }
 
+// Character types
+const (
+	Wizard int64 = 1
+	Elf    int64 = 2
+	Hobbit int64 = 3
+)
+
 // CreateCharacterRequest represents an character creation request.
 type CreateCharacterRequest struct {
-	Name string `json:"name"`
+	Name           string `json:"name"`
+	CharacterCode  int64  `json:"character_code"`
+	CharacterPower int64  `json:"character_power"`
 }
 
 // Validate validates the CreateAlbumRequest fields.
@@ -37,7 +47,8 @@ func (m CreateCharacterRequest) Validate() error {
 
 // UpdateCharacterRequest represents an album update request.
 type UpdateCharacterRequest struct {
-	Name string `json:"name"`
+	Name           string `json:"name"`
+	CharacterPower int64  `json:"character_power"`
 }
 
 // Validate validates the CreateAlbumRequest fields.
@@ -52,8 +63,8 @@ type service struct {
 	logger log.Logger
 }
 
-// NewCharacterService creates a new album service.
-func NewCharacterService(repo Repository, logger log.Logger) Service {
+// NewService creates a new album service.
+func NewService(repo Repository, logger log.Logger) Service {
 	return service{repo, logger}
 }
 
@@ -71,14 +82,35 @@ func (s service) Create(ctx context.Context, req CreateCharacterRequest) (Charac
 	if err := req.Validate(); err != nil {
 		return Character{}, err
 	}
+
+	power := req.CharacterPower
+	var value int64
+
+	if req.CharacterCode == Wizard {
+		value = (power * 150 / 100)
+	} else if req.CharacterCode == Elf {
+		characterValue := power * 110 / 100
+		value = 2 + characterValue
+	} else if req.CharacterCode == Hobbit {
+		if power < 20 {
+			value = power * 200 / 100
+		} else {
+			value = power * 300 / 100
+		}
+	}
+
 	id := entity.GenerateID()
 	now := time.Now()
 	err := s.repo.Create(ctx, entity.Character{
-		ID:        id,
-		Name:      req.Name,
-		CreatedAt: now,
-		UpdatedAt: now,
+		ID:             id,
+		Name:           req.Name,
+		CharacterCode:  req.CharacterCode,
+		CharacterPower: power,
+		CharacterValue: value,
+		CreatedAt:      now,
+		UpdatedAt:      now,
 	})
+
 	if err != nil {
 		return Character{}, err
 	}
@@ -95,8 +127,24 @@ func (s service) Update(ctx context.Context, id string, req UpdateCharacterReque
 	if err != nil {
 		return character, err
 	}
+	power := req.CharacterPower
+	var value int64
+
+	if character.CharacterCode == Wizard {
+		value = power * (150 / 100)
+	} else if character.CharacterCode == Elf {
+		value = 2 + (110 / 100)
+	} else if character.CharacterCode == Hobbit {
+		if power < 20 {
+			value = power * (200 / 100)
+		} else {
+			value = power * (300 / 100)
+		}
+	}
+
 	character.Name = req.Name
-	character.UpdatedAt = time.Now()
+	character.CharacterPower = power
+	character.CharacterValue = value
 
 	if err := s.repo.Update(ctx, character.Character); err != nil {
 		return character, err
