@@ -1,6 +1,7 @@
 
 # Go Rest API Game Character
 
+[![Build Status](https://github.com/HikvIneH/go-rest-game-character/workflows/build/badge.svg)](https://github.com/HikvIneH/go-rest-game-character/actions?query=workflow%3Abuild)
 [![Code Coverage](https://codecov.io/gh/HikvIneH/go-rest-game-character/branch/master/graph/badge.svg)](https://codecov.io/gh/HikvIneH/go-rest-game-character)
 
 ## Getting Started
