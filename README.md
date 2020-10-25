@@ -1,9 +1,7 @@
 
 # Go Rest API Game Character
 
-[![Build Status](https://github.com/qiangxue/go-rest-api/workflows/build/badge.svg)](https://codecov.io/gh/HikvIneH/go-rest-game-character/actions?query=workflow%3Abuild)
 [![Code Coverage](https://codecov.io/gh/HikvIneH/go-rest-game-character/branch/master/graph/badge.svg)](https://codecov.io/gh/HikvIneH/go-rest-game-character)
-[![Go Report](https://goreportcard.com/badge/github.com/qiangxue/go-rest-api)](https://goreportcard.com/report/github.com/qiangxue/go-rest-api)
 
 ## Getting Started
 
@@ -22,13 +20,27 @@ After installing Go and Docker, run the following commands to start experiencing
 docker-compose up -d
 
 # to check on unit test 
-~ make db-start
 ~ make test
 
 ```
+Notes:
+- Postgresql will use port 5432
+- 
 
 
 ## CRUD Operation
+
+RESTful API server running at `http://127.0.0.1:8000`. It provides the following endpoints:
+
+* `GET /healthcheck`: a healthcheck service provided for health checking purpose (needed when implementing a server cluster)
+* `POST /v1/login`: authenticates a user and generates a JWT
+* `GET /v1/characters`: returns a paginated list of the characters
+* `GET /v1/characters/:id`: returns the detailed information of an character
+* `POST /v1/characters`: creates a new character
+* `PUT /v1/characters/:id`: updates an existing character
+* `DELETE /v1/characters/:id`: deletes an character
+
+
 If you have `cURL` or some API client tools (e.g. [Postman](https://www.getpostman.com/)), you may try the following 
 more complex scenarios:
 
@@ -37,9 +49,9 @@ more complex scenarios:
 curl -X POST -H "Content-Type: application/json" -d '{"username": "demo", "password": "pass"}' http://localhost:8000/v1/login
 # should return a JWT token like: {"token":"...JWT token here..."}
 
-# with the above JWT token, access the album resources, such as: GET /v1/characters
+# with the above JWT token, access the character resources, such as: GET /v1/characters
 curl -X GET -H "Authorization: Bearer ...JWT token here..." http://localhost:8000/v1/characters
-# should return a list of album records in the JSON format
+# should return a list of character records in the JSON format
 
 # Create character
 curl -X POST -H "Authorization: Bearer ...JWT token here..." -H "Content-Type: application/json" -d '{"name":"Gandalf", "character_code":1, "character_power":100}' http://localhost:8000/v1/characters
