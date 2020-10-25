@@ -79,13 +79,12 @@ CREATE TABLE character
 
     CONSTRAINT fk_customer
         FOREIGN KEY(character_code) 
-        REFERENCES charater_type(character_code)
+        REFERENCES character_type(character_code)
 );
 
 CREATE TABLE character_type
 (
-    id                      bigint PRIMARY KEY,
-    character_code          bigint NOT NULL,
+    character_code          bigint PRIMARY KEY,
     name                    VARCHAR NOT NULL,
     created_at              TIMESTAMP NOT NULL,
     updated_at              TIMESTAMP NOT NULL

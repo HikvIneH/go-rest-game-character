@@ -15,8 +15,7 @@ CREATE TABLE character
 
 CREATE TABLE character_type
 (
-    id                      bigint PRIMARY KEY,
-    character_code          bigint NOT NULL,
+    character_code          bigint PRIMARY KEY,
     name                    VARCHAR NOT NULL,
     created_at              TIMESTAMP NOT NULL,
     updated_at              TIMESTAMP NOT NULL
