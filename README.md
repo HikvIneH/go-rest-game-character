@@ -1,3 +1,10 @@
+
+# Go Rest API Game Character
+
+[![Build Status](https://github.com/qiangxue/go-rest-api/workflows/build/badge.svg)](https://codecov.io/gh/HikvIneH/go-rest-game-character/actions?query=workflow%3Abuild)
+[![Code Coverage](https://codecov.io/gh/HikvIneH/go-rest-game-character/branch/master/graph/badge.svg)](https://codecov.io/gh/HikvIneH/go-rest-game-character)
+[![Go Report](https://goreportcard.com/badge/github.com/qiangxue/go-rest-api)](https://goreportcard.com/report/github.com/qiangxue/go-rest-api)
+
 ## Getting Started
 
 This api is using starter kit from [qianxue go rest api](https://github.com/qiangxue/go-rest-ap)
