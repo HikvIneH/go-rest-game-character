@@ -16,7 +16,7 @@ func RegisterHandlers(r *routing.RouteGroup, service Service, authHandler routin
 	r.Get("/characters/<id>", res.get)
 	r.Get("/characters", res.query)
 
-	// r.Use(authHandler)
+	r.Use(authHandler)
 
 	// the following endpoints require a valid JWT
 	r.Post("/characters", res.create)
