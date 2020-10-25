@@ -74,7 +74,7 @@ CREATE TABLE character
     character_power         bigint NOT NULL,
     character_value         bigint NOT NULL,
     created_at              TIMESTAMP NOT NULL,
-    updated_at              TIMESTAMP NOT NULL
+    updated_at              TIMESTAMP NOT NULL,
 
     CONSTRAINT fk_customer
         FOREIGN KEY(character_code) 
