@@ -73,7 +73,7 @@ CREATE TABLE character_type
     name                    VARCHAR NOT NULL,
     created_at              TIMESTAMP NOT NULL,
     updated_at              TIMESTAMP NOT NULL
-)
+);
 
 CREATE TABLE character
 (
