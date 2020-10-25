@@ -10,7 +10,7 @@ CREATE TABLE character
 
     CONSTRAINT fk_customer
         FOREIGN KEY(character_code) 
-        REFERENCES charatcer_type(character_code)
+        REFERENCES character_type(character_code)
 );
 
 CREATE TABLE character_type
